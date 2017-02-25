@@ -27,6 +27,8 @@ namespace View
         {
             InitializeComponent();
 
+            // WARNING: THIS CODE VIOLATES MVVM PRINCIPLES
+            // IT IS FOR ILLUSTRATIVE PURPOSES ONLY
             this.Simulation = new Simulation();
             this.Simulation.Species[0].CreateBoid(new Vector2D(50, 50));
             this.Simulation.Species[1].CreateBoid(new Vector2D(150, 150));
