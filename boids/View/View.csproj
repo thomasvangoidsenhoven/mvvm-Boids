@@ -95,6 +95,20 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Model\Model.csproj">
+      <Project>{f3a8833f-be9c-40c1-a9bd-f3e009b65070}</Project>
+      <Name>Model</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\VGOLibrary\VGOLibrary.csproj">
+      <Project>{b30bdbf3-0fef-4ae2-a7df-791a2a669534}</Project>
+      <Name>VGOLibrary</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ViewModel\ViewModel.csproj">
+      <Project>{011eeab0-2531-46bf-8cfb-c5cf73502003}</Project>
+      <Name>ViewModel</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

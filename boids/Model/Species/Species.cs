@@ -1,14 +1,15 @@
 ﻿using Cells;
-using Mathematics.AI;
+using Model.AI;
 using Bindings;
-using Mathematics.Forces;
+using Model.Forces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Mathematics;
 
-namespace Mathematics.Species
+namespace Model.Species
 {
     public abstract class BoidSpecies
     {

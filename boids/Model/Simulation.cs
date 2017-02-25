@@ -1,11 +1,11 @@
-﻿using Mathematics.Species;
+﻿using Model.Species;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Mathematics
+namespace Model
 {
     public class Simulation
     {
@@ -27,7 +27,7 @@ namespace Mathematics
             this.quantizer.Update(dt);
         }
 
-        public IEnumerable<BoidSpecies> Species => species;
+        public IList<BoidSpecies> Species => species;
 
         private IEnumerable<BoidSpecies> CreateSpecies()
         {
