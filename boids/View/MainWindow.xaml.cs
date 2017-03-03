@@ -34,6 +34,7 @@ namespace View
             this.Simulation.Species[1].CreateBoid(new Vector2D(150, 150));
             this.DataContext = this;
 
+            // Using the timer like this will yield choppy animation
             var timer = new DispatcherTimer(TimeSpan.FromMilliseconds(20), DispatcherPriority.Render, (x, y) => { this.Simulation.Update(0.02); }, this.Dispatcher);
             timer.Start();
         }
