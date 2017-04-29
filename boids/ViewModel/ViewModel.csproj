@@ -40,12 +40,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BindingsViewModel.cs" />
     <Compile Include="BoidViewModel.cs" />
-    <Compile Include="HunterViewModel.cs" />
-    <Compile Include="PreyViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="RangedDoubleParameterViewModel.cs" />
     <Compile Include="SimulationViewModel.cs" />
     <Compile Include="SpeciesViewModel.cs" />
     <Compile Include="WorldViewModel.cs" />

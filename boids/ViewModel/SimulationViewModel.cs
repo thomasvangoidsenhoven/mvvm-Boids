@@ -18,18 +18,12 @@ namespace ViewModel
             get { return _WorldView; }
         }
 
-        private SpeciesViewModel _Species;
-        public SpeciesViewModel Species
-        {
-            get { return _Species; }
-            set { _Species = value; }
-        }
-
+     
         public SimulationViewModel(Simulation simulation)
         {
             _simulation = simulation;
             WorldView = new WorldViewModel(_simulation.World);
-            Species = new SpeciesViewModel(_simulation.Species);
+           
         }
     }
 }

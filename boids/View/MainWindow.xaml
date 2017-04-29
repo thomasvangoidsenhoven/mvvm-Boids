@@ -12,11 +12,20 @@
     </Window.Resources>
     <Grid>
         <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="auto" />
             <ColumnDefinition />
-            <ColumnDefinition />
+            <ColumnDefinition Width="auto"/>
         </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+   
+        </Grid.RowDefinitions>
 
-        <ItemsControl Grid.Column="0" ItemsSource="{Binding WorldView.BoidViewModels}">
+        <ItemsControl Grid.Column="0" x:Name="prey">
+            
+        </ItemsControl>
+        
+        <ItemsControl Grid.Column="1" ItemsSource="{Binding WorldView.BoidViewModels}">
             <ItemsControl.ItemsPanel>
                 <ItemsPanelTemplate>
                     <Canvas />
@@ -35,11 +44,13 @@
             </ItemsControl.ItemTemplate>
         </ItemsControl>
 
+        <ItemsControl Grid.Column="2" x:Name="hunters">
+
+        </ItemsControl>
 
 
-        <StackPanel>
-
-            <ItemsControl Grid.Column="0" ItemsSource="{Binding WorldView.BoidViewModels}">
+        <!--<StackPanel Grid.Column="0" >
+            <ItemsControl ItemsSource="{Binding WorldView.BoidViewModels}">
                 <ItemsControl.ItemsPanel>
                     <ItemsPanelTemplate>
                         <StackPanel Orientation="Vertical" />
@@ -80,7 +91,7 @@
             <Label Content="Maximum acceleration"></Label> 
             <Slider  Value="{Binding Hunters.MaxAcceleration.Value}" Minimum="0" Maximum="10000" Width="100"/>
             <Label Content="{Binding Hunters.MaxAcceleration.Value}"></Label>
-        </StackPanel>
+        </StackPanel>-->
         
 
     </Grid>

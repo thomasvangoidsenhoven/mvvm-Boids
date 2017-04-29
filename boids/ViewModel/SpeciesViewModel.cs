@@ -1,4 +1,6 @@
-﻿using Model.Species;
+﻿using Bindings;
+using Cells;
+using Model.Species;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,15 +9,42 @@ using System.Threading.Tasks;
 
 namespace ViewModel
 {
-    public class SpeciesViewModel
+    class SpeciesViewModel
     {
+        private BoidSpecies specie;
+        public BindingsViewModel Bindings;
 
-        private BoidSpecies _species;
-        public IEnumerable
-
-        public SpeciesViewModel(BoidSpecies species)
+        public SpeciesViewModel(BoidSpecies specie)
         {
-            _species = species;
+            this.specie = specie;
+            Bindings = new BindingsViewModel(specie.Bindings);
+        }
+    }
+
+    public class BindingsViewModel
+    {
+        private ParameterBindings bindings;
+        public IEnumerable<RangeViewModel> RangeViewModel;
+        public BindingsViewModel(ParameterBindings bindings)
+        {
+            this.bindings = bindings;
+            this.RangeViewModel = this.bindings.Parameters.Where(p => p is RangedDoubleParameter).Select(p => new RangeViewModel(this.bindings, (RangedDoubleParameter) p));
+        }
+
+    }
+
+    public class RangeViewModel
+    {
+        private ParameterBindings parameterBindings;
+        private RangedDoubleParameter parameter;
+
+        public String name;
+        public Cell<double> Value { get; set; }
+
+        public RangeViewModel(ParameterBindings bindings, RangedDoubleParameter parameter)
+        {
+            parameterBindings = bindings;
+            this.parameter = parameter;
         }
     }
 }
