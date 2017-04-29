@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace ViewModel
 {
-    class SpeciesViewModel
+    public class SpeciesViewModel
     {
         private BoidSpecies specie;
         public BindingsViewModel Bindings;
@@ -38,13 +38,15 @@ namespace ViewModel
         private ParameterBindings parameterBindings;
         private RangedDoubleParameter parameter;
 
-        public String name;
+        public String Name;
         public Cell<double> Value { get; set; }
 
         public RangeViewModel(ParameterBindings bindings, RangedDoubleParameter parameter)
         {
             parameterBindings = bindings;
             this.parameter = parameter;
+            this.Value = this.parameterBindings.Read(this.parameter);
+            this.Name = parameter.Id;
         }
     }
 }

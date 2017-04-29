@@ -34,7 +34,14 @@ namespace View
             this.Simulation = new Simulation();
             this.Simulation.Species[0].CreateBoid(new Vector2D(50, 50));
             this.Simulation.Species[1].CreateBoid(new Vector2D(150, 150));
-            this.DataContext = new SimulationViewModel(Simulation);
+            SimulationViewModel vm = new SimulationViewModel(Simulation);
+            this.DataContext = vm;
+        
+            this.prey.DataContext = vm.PreyView;
+            System.Console.WriteLine(vm.PreyView.Bindings.RangeViewModel.First().Name);
+            System.Console.Read();
+            this.hunters.DataContext = vm.HunterView;
+
             
 
             // Using the timer like this will yield choppy animation

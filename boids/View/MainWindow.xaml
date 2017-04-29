@@ -21,10 +21,6 @@
    
         </Grid.RowDefinitions>
 
-        <ItemsControl Grid.Column="0" x:Name="prey">
-            
-        </ItemsControl>
-        
         <ItemsControl Grid.Column="1" ItemsSource="{Binding WorldView.BoidViewModels}">
             <ItemsControl.ItemsPanel>
                 <ItemsPanelTemplate>
@@ -43,6 +39,25 @@
                 </DataTemplate>
             </ItemsControl.ItemTemplate>
         </ItemsControl>
+
+        <ItemsControl Grid.Column="0" x:Name="prey" ItemsSource="{Binding Bindings.RangeViewModel}">
+            <ItemsControl.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <Grid />
+                </ItemsPanelTemplate>
+            </ItemsControl.ItemsPanel>
+            <ItemsControl.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel>
+                        <Label Content="{Binding Name}"></Label>
+                        <Label Content="test"></Label>
+                    </StackPanel>
+
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+        </ItemsControl>
+
+
 
         <ItemsControl Grid.Column="2" x:Name="hunters">
 
