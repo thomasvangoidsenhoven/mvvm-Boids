@@ -5,12 +5,13 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:View"
         mc:Ignorable="d"
-        Title="MainWindow" Height="1000" Width="1900">
+        Title="MainWindow" Height="1000" Width="1900"
+        FontSize="24">
     <Window.Resources>
         <local:SpeciesToColorConverter x:Key="speciesToColor"/>
-
+        <local:SpeciesToStarWarsConverter x:Key="speciesToStarWarsConverter"/>
     </Window.Resources>
-    <Grid>
+    <Grid Background="Black">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="auto" />
             <ColumnDefinition />
@@ -35,33 +36,53 @@
             </ItemsControl.ItemContainerStyle>
             <ItemsControl.ItemTemplate>
                 <DataTemplate>
-                    <Ellipse Fill="{Binding Species, Converter={StaticResource speciesToColor} }"  Width="25" Height="25" />
-                </DataTemplate>
-            </ItemsControl.ItemTemplate>
-        </ItemsControl>
-
-        <ItemsControl Grid.Column="0" x:Name="prey" ItemsSource="{Binding Bindings.RangeViewModel}">
-            <ItemsControl.ItemsPanel>
-                <ItemsPanelTemplate>
-                    <Grid />
-                </ItemsPanelTemplate>
-            </ItemsControl.ItemsPanel>
-            <ItemsControl.ItemTemplate>
-                <DataTemplate>
-                    <StackPanel>
-                        <Label Content="{Binding Name}"></Label>
-                        <Label Content="test"></Label>
-                    </StackPanel>
-
+                    <!--<Ellipse Fill="{Binding Species, Converter={StaticResource speciesToColor} }"  Width="25" Height="25" />-->
+                    <Image Width="50" Height="50"  Source="{Binding Species, Converter={StaticResource speciesToStarWarsConverter}}"></Image>
                 </DataTemplate>
             </ItemsControl.ItemTemplate>
         </ItemsControl>
 
 
 
-        <ItemsControl Grid.Column="2" x:Name="hunters">
+        <StackPanel Margin="10" Grid.Column="0">
+            <Label  Foreground="AliceBlue" Content="Hunters"></Label>
+            <ItemsControl x:Name="Hunters"  ItemsSource="{Binding bindingsViewModel.RangeViewModel}">
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <StackPanel />
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Margin="20 2 0 2">
+                            <Label Foreground="Yellow" FontSize="18" Content="{Binding Name}"></Label>
+                            <Slider  Value="{Binding Value.Value}" Minimum="{Binding Minimum}" Maximum="{Binding Maximum}" Width="auto"/>
+                        </StackPanel>
 
-        </ItemsControl>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+        </StackPanel>
+
+        <StackPanel Margin="10" Grid.Column="2">
+            <Label Foreground="AliceBlue"  Content="Preys" HorizontalAlignment="Right"></Label>
+            <ItemsControl x:Name="Preys"  ItemsSource="{Binding bindingsViewModel.RangeViewModel}">
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <StackPanel />
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Margin="0 2 20 2">
+                            <Label Foreground="Yellow" FontSize="18" Content="{Binding Name}"></Label>
+                            <Slider  Value="{Binding Value.Value}" Minimum="{Binding Minimum}" Maximum="{Binding Maximum}" Width="auto"/>
+                        </StackPanel>
+
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+        </StackPanel>
 
 
         <!--<StackPanel Grid.Column="0" >
@@ -96,8 +117,8 @@
                         </Border>
                     </DataTemplate>
                 </ItemsControl.ItemTemplate>
-            </ItemsControl>
-
+            </ItemsControl>-->
+            <!--
             
             <Label Content="Maximum speed"></Label>
             <Slider  Value="{Binding Hunters.Maxspeed.Value}" Minimum="0" Maximum="10000" Width="100"/>

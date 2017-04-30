@@ -36,11 +36,8 @@ namespace View
             this.Simulation.Species[1].CreateBoid(new Vector2D(150, 150));
             SimulationViewModel vm = new SimulationViewModel(Simulation);
             this.DataContext = vm;
-        
-            this.prey.DataContext = vm.PreyView;
-            System.Console.WriteLine(vm.PreyView.Bindings.RangeViewModel.First().Name);
-            System.Console.Read();
-            this.hunters.DataContext = vm.HunterView;
+            this.Hunters.DataContext = vm.Species.First();
+            this.Preys.DataContext = vm.Species[1];
 
             
 

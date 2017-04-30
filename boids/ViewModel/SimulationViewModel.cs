@@ -17,20 +17,7 @@ namespace ViewModel
             get { return _WorldView; }
         }
 
-        private SpeciesViewModel _HunterView;
-        public SpeciesViewModel HunterView
-        {
-            get { return this._HunterView; }
-            set { this._HunterView = value; }
-        }
-
-
-        private SpeciesViewModel _PreyView;
-        public SpeciesViewModel PreyView
-        {
-            get { return this._PreyView; }
-            set { this._PreyView = value; }
-        }
+        public IList<SpeciesViewModel> Species => _simulation.Species.Select(s => new SpeciesViewModel(s)).ToList();
 
 
 
@@ -38,8 +25,7 @@ namespace ViewModel
         {
             _simulation = simulation;
             WorldView = new WorldViewModel(_simulation.World);
-            HunterView = new SpeciesViewModel(_simulation.Species[0]);
-            PreyView = new SpeciesViewModel(_simulation.Species[1]);
+            
         }
     }
 }

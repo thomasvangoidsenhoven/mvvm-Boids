@@ -9,26 +9,30 @@ using System.Threading.Tasks;
 
 namespace ViewModel
 {
+
+    
+
     public class SpeciesViewModel
     {
         private BoidSpecies specie;
-        public BindingsViewModel Bindings;
+   
 
         public SpeciesViewModel(BoidSpecies specie)
         {
             this.specie = specie;
-            Bindings = new BindingsViewModel(specie.Bindings);
+            
         }
+        public BindingsViewModel bindingsViewModel => new BindingsViewModel(specie.Bindings);
     }
 
     public class BindingsViewModel
     {
         private ParameterBindings bindings;
-        public IEnumerable<RangeViewModel> RangeViewModel;
+        public IEnumerable<RangeViewModel> RangeViewModel => this.bindings.Parameters.Where(p => p is RangedDoubleParameter).Select(p => new RangeViewModel(this.bindings, (RangedDoubleParameter)p));
         public BindingsViewModel(ParameterBindings bindings)
         {
             this.bindings = bindings;
-            this.RangeViewModel = this.bindings.Parameters.Where(p => p is RangedDoubleParameter).Select(p => new RangeViewModel(this.bindings, (RangedDoubleParameter) p));
+         
         }
 
     }
@@ -37,16 +41,20 @@ namespace ViewModel
     {
         private ParameterBindings parameterBindings;
         private RangedDoubleParameter parameter;
+        
+        public String Name => parameter.Id;
 
-        public String Name;
+        public double Minimum => parameter.Minimum;
+        public double Maximum => parameter.Maximum;
         public Cell<double> Value { get; set; }
 
         public RangeViewModel(ParameterBindings bindings, RangedDoubleParameter parameter)
         {
             parameterBindings = bindings;
             this.parameter = parameter;
+  
             this.Value = this.parameterBindings.Read(this.parameter);
-            this.Name = parameter.Id;
+            
         }
     }
 }
