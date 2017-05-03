@@ -1,4 +1,5 @@
-﻿using Cells;
+﻿using Bindings;
+using Cells;
 using Model;
 using System;
 using System.Collections.Generic;
@@ -17,13 +18,22 @@ namespace ViewModel
             set { _BoidViewModels = value; }
         }
 
+        public Cell<double> Height => worldRefBinding.Read(World.Height);
+        public Cell<double> Width => worldRefBinding.Read(World.Width);
+
         private World worldRef;
+        private ParameterBindings worldRefBinding => worldRef.Bindings;
 
         public WorldViewModel(World world)
         {
             worldRef = world;
-            BoidViewModels = world.Population.Select(b => new BoidViewModel(b));
+            BoidViewModels = worldRef.Population.Select(b => new BoidViewModel(b));
         }
 
+
+        public void update()
+        {
+            BoidViewModels = worldRef.Population.Select(b => new BoidViewModel(b));
+        }
     }
 }

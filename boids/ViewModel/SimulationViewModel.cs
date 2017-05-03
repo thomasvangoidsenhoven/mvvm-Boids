@@ -19,7 +19,16 @@ namespace ViewModel
 
         public IList<SpeciesViewModel> Species => _simulation.Species.Select(s => new SpeciesViewModel(s)).ToList();
 
+        public void Update(double time)
+        {
+            _simulation.Update(time);
+        }
 
+        public void populate(double x, double y)
+        {
+            Species[0].populate(x, y);
+            WorldView.update();
+        }
 
         public SimulationViewModel(Simulation simulation)
         {

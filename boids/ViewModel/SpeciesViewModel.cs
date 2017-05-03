@@ -1,5 +1,6 @@
 ﻿using Bindings;
 using Cells;
+using Mathematics;
 using Model.Species;
 using System;
 using System.Collections.Generic;
@@ -15,13 +16,20 @@ namespace ViewModel
     public class SpeciesViewModel
     {
         private BoidSpecies specie;
-   
+       
 
         public SpeciesViewModel(BoidSpecies specie)
         {
-            this.specie = specie;
             
+            this.specie = specie;
         }
+
+        public void populate(double x, double y)
+        {
+            
+            specie.CreateBoid(new Vector2D(x, y));
+        }
+
         public BindingsViewModel bindingsViewModel => new BindingsViewModel(specie.Bindings);
     }
 
@@ -52,7 +60,6 @@ namespace ViewModel
         {
             parameterBindings = bindings;
             this.parameter = parameter;
-  
             this.Value = this.parameterBindings.Read(this.parameter);
             
         }
