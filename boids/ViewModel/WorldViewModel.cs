@@ -3,6 +3,7 @@ using Cells;
 using Model;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -11,9 +12,9 @@ namespace ViewModel
 {
     public class WorldViewModel
     {
-        private IEnumerable<BoidViewModel> _BoidViewModels;
+        private ObservableCollection<BoidViewModel> _BoidViewModels;
 
-        public IEnumerable<BoidViewModel> BoidViewModels {
+        public ObservableCollection<BoidViewModel> BoidViewModels {
             get { return _BoidViewModels; }
             set { _BoidViewModels = value; }
         }
@@ -27,13 +28,27 @@ namespace ViewModel
         public WorldViewModel(World world)
         {
             worldRef = world;
-            BoidViewModels = worldRef.Population.Select(b => new BoidViewModel(b));
+            //maakt observable boidviewmodels 
+            BoidViewModels = new ObservableCollection<BoidViewModel>(worldRef.Population.Select(boid => new BoidViewModel(boid)));
+            
         }
 
-
-        public void update()
+        //method invoked on change in boids
+        public void update_population(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            BoidViewModels = worldRef.Population.Select(b => new BoidViewModel(b));
+            //reset and recreate the viewmodels | does not delete the actual _BoidViewModels object, only clear and refill
+            BoidViewModels.Clear();
+
+            // ** LINQ does not have indexes use foreach instead
+            //for(int i = 0; i < worldRef.Population.Count; i++)
+            //{
+            //    BoidViewModels.Add(new BoidViewModel(worldRef.Population.se))
+            //}
+            foreach (Boid boid in worldRef.Population)
+            {
+                BoidViewModels.Add(new BoidViewModel(boid));
+            }
+
         }
     }
 }

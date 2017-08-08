@@ -46,6 +46,7 @@
     <Compile Include="Forces\BoidAttractionForce.cs" />
     <Compile Include="Forces\IForce.cs" />
     <Compile Include="Forces\WallForce.cs" />
+    <Compile Include="ITimeService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Simulation.cs" />
     <Compile Include="Species\HunterSpecies.cs" />

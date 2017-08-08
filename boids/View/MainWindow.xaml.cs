@@ -25,28 +25,34 @@ namespace View
     /// </summary>
     public partial class MainWindow : Window
     {
+
+        public BoidSpy boidSpy;
+        public BoidControls boidController;
         public MainWindow()
         {
             InitializeComponent();
-            var timer = new DispatcherTimer(TimeSpan.FromMilliseconds(20), DispatcherPriority.Render, (x, y) =>
-            {
-                var vm = (SimulationViewModel)DataContext;
-                vm.Update(0.02);
-            }, this.Dispatcher);
-
-
-            timer.Start();
-
-    
-
+            boidSpy = new BoidSpy();
+            boidController = new BoidControls();
+           
         }
 
-        private void Canvas_MouseDown(object sender, MouseButtonEventArgs e)
+        public void initSideWindows()
         {
-            System.Diagnostics.Debug.WriteLine("try_add");
-            var vm = (SimulationViewModel)DataContext;
-            vm.populate(e.GetPosition(this).X, e.GetPosition(this).Y);
-     
+            var context = (SimulationViewModel)this.DataContext;
+
+            boidController.Hunters.DataContext = context.Species.First();
+            boidController.Preys.DataContext = context.Species[1];
+            boidSpy.DataContext = context;
+        }
+
+        private void Show_Boid_Controls(object sender, RoutedEventArgs e)
+        {
+            boidController.Show();
+        }
+
+        private void Show_Boid_Spy(object sender, RoutedEventArgs e)
+        {
+            boidSpy.Show();
         }
     }
 }

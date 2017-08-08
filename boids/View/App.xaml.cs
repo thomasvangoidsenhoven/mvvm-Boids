@@ -1,4 +1,6 @@
 ﻿using Mathematics;
+using Microsoft.Practices.ServiceLocation;
+using Microsoft.Practices.Unity;
 using Model;
 using System;
 using System.Collections.Generic;
@@ -7,7 +9,9 @@ using System.Data;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
+using View.classes;
 using ViewModel;
+
 
 namespace View
 {
@@ -19,22 +23,32 @@ namespace View
         protected override void OnStartup(StartupEventArgs e)
         {
             base.OnStartup(e);
-            Simulation simulation = new Simulation();
-            var main = new MainWindow();
-            
 
+            //dependency injection timer
+            var container = new UnityContainer();
+            container.RegisterInstance<IUnityContainer>(container);
+            container.RegisterType<ITimeService, TimeService>();
+            UnityServiceLocator locator = new UnityServiceLocator(container);
+            ServiceLocator.SetLocatorProvider(() => locator);
+
+
+            Simulation simulation = new Simulation();
+            
             simulation.Species[0].CreateBoid(new Vector2D(50, 50));
             simulation.Species[1].CreateBoid(new Vector2D(150, 150));
             SimulationViewModel vm = new SimulationViewModel(simulation);
-            
-            main.DataContext = vm;
-            main.Hunters.DataContext = vm.Species.First();
-            main.Preys.DataContext = vm.Species[1];
-            main.Show();
 
-            var side = new BoidSpy();
-            side.DataContext = vm;
-            side.Show();
+            var main = new MainWindow();
+            main.DataContext = vm;
+            main.initSideWindows();
+        
+
+
+            main.Show();
+        
+            
+            
+           
         }
     }
 }
