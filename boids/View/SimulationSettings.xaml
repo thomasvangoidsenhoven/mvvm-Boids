@@ -6,7 +6,21 @@
         xmlns:local="clr-namespace:View"
         mc:Ignorable="d"
         Title="SimulationSettings" Height="300" Width="392.437">
-    <Grid>
+    <Grid VerticalAlignment="Center">
+        <StackPanel>
+            <Label>Simuation Speed</Label>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                <Button Margin="10 0 10 0" Width="70" Command="{Binding PauseSimulation}">Pause Game</Button>
+                <Button Margin="10 0 10 0" Width="70" Command="{Binding DefaultSpeed}">Default</Button>
+                <Button Margin="10 0 10 0" Width="70" Command="{Binding SlowSpeed}">Slow</Button>
+                <Button Margin="10 0 10 0" Width="70" Command="{Binding FastSpeed}">Fast</Button>
+            </StackPanel>
 
+            <Label>Species Management</Label>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                <Button Margin="20 0 20 0" Width="80" Command="{Binding AddPrey}">Add Prey</Button>
+                <Button  Margin="20 0 20 0" Width="80" Command="{Binding AddHunter}">Add Hunter</Button>
+            </StackPanel>
+        </StackPanel>
     </Grid>
 </Window>

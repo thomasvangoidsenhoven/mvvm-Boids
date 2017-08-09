@@ -28,12 +28,13 @@ namespace View
 
         public BoidSpy boidSpy;
         public BoidControls boidController;
+        public SimulationSettings simulationSettings;
         public MainWindow()
         {
             InitializeComponent();
             boidSpy = new BoidSpy();
             boidController = new BoidControls();
-           
+            simulationSettings = new SimulationSettings();
         }
 
         public void initSideWindows()
@@ -43,6 +44,7 @@ namespace View
             boidController.Hunters.DataContext = context.Species.First();
             boidController.Preys.DataContext = context.Species[1];
             boidSpy.DataContext = context;
+            simulationSettings.DataContext = context;
         }
 
         private void Show_Boid_Controls(object sender, RoutedEventArgs e)
@@ -53,6 +55,11 @@ namespace View
         private void Show_Boid_Spy(object sender, RoutedEventArgs e)
         {
             boidSpy.Show();
+        }
+
+        private void Show_Simulation_Settings(object sender, RoutedEventArgs e)
+        {
+            simulationSettings.Show();
         }
     }
 }

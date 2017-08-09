@@ -34,8 +34,7 @@ namespace View
 
             Simulation simulation = new Simulation();
             
-            simulation.Species[0].CreateBoid(new Vector2D(50, 50));
-            simulation.Species[1].CreateBoid(new Vector2D(150, 150));
+            
             SimulationViewModel vm = new SimulationViewModel(simulation);
 
             var main = new MainWindow();

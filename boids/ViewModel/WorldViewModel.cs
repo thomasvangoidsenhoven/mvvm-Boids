@@ -28,13 +28,14 @@ namespace ViewModel
         public WorldViewModel(World world)
         {
             worldRef = world;
+            worldRef.Population.CollectionChanged += Update_Population;
             //maakt observable boidviewmodels 
             BoidViewModels = new ObservableCollection<BoidViewModel>(worldRef.Population.Select(boid => new BoidViewModel(boid)));
             
         }
 
         //method invoked on change in boids
-        public void update_population(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
+        public void Update_Population(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
             //reset and recreate the viewmodels | does not delete the actual _BoidViewModels object, only clear and refill
             BoidViewModels.Clear();
