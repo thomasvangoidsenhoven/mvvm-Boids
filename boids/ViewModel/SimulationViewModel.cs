@@ -32,14 +32,15 @@ namespace ViewModel
         public ICommand FastSpeed { get; }
         public ICommand SlowSpeed { get; }
         public ICommand PauseSimulation { get; }
-
+        public ICommand Reset { get; }
+        public ICommand AddBomb { get; }
 
         public SimulationViewModel(Simulation simulation)
         {
             _simulation = simulation;
             _simulation.Species[0].CreateBoid(new Vector2D(50, 50));
             _simulation.Species[1].CreateBoid(new Vector2D(250, 250));
-
+            _simulation.Species[2].CreateBoid(new Vector2D(600, 600));
 
             WorldView = new WorldViewModel(_simulation.World);
             timeService = ServiceLocator.Current.GetInstance<ITimeService>();
@@ -47,15 +48,21 @@ namespace ViewModel
             timeService.Start(new TimeSpan(0,0,0,0,15));
 
 
-            AddPrey = EnabledCommand.FromDelegate(() => _simulation.Species[0].CreateBoid(new Vector2D(50, 50)));
-            AddHunter = EnabledCommand.FromDelegate(() => _simulation.Species[1].CreateBoid(new Vector2D(50, 50)));
+            AddPrey = EnabledCommand.FromDelegate(() => _simulation.Species[1].CreateBoid(new Vector2D(50, 50)));
+            AddHunter = EnabledCommand.FromDelegate(() => _simulation.Species[0].CreateBoid(new Vector2D(300, 50)));
             PauseSimulation = EnabledCommand.FromDelegate(() => Pause_Simulation());
             DefaultSpeed = EnabledCommand.FromDelegate(() => RestartAndAdvanceTimer(20));
             SlowSpeed = EnabledCommand.FromDelegate(() => RestartAndAdvanceTimer(40));
             FastSpeed = EnabledCommand.FromDelegate(() => RestartAndAdvanceTimer(5));
-
+            Reset = EnabledCommand.FromDelegate(() => Reset_Simulation());
+            AddBomb = EnabledCommand.FromDelegate(() => _simulation.Species[2].CreateBoid(new Vector2D(650, 650)));
         }
 
+
+        private void Reset_Simulation()
+        {
+            _simulation.World.Population.Clear();
+        }
 
         public void Update(double time)
         {

@@ -43,6 +43,7 @@ namespace View
 
             boidController.Hunters.DataContext = context.Species.First();
             boidController.Preys.DataContext = context.Species[1];
+            boidController.Bomb.DataContext = context.Species[2];
             boidSpy.DataContext = context;
             simulationSettings.DataContext = context;
         }
@@ -60,6 +61,11 @@ namespace View
         private void Show_Simulation_Settings(object sender, RoutedEventArgs e)
         {
             simulationSettings.Show();
+        }
+
+        private void Close_Window(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            Application.Current.Shutdown();
         }
     }
 }

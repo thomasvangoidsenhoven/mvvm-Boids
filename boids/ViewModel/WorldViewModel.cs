@@ -19,6 +19,7 @@ namespace ViewModel
             set { _BoidViewModels = value; }
         }
 
+        
         public Cell<double> Height => worldRefBinding.Read(World.Height);
         public Cell<double> Width => worldRefBinding.Read(World.Width);
 

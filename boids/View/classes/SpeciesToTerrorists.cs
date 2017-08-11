@@ -8,7 +8,7 @@ using System.Windows.Data;
 
 namespace View
 {
-    public class SpeciesToStarWarsConverter : IValueConverter
+    public class SpeciesToTerroristsConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
@@ -20,6 +20,11 @@ namespace View
             else if (species == "prey")
             {
                 return "osamachan.png";
+            }
+            else if (species == "bomb")
+            {
+                return "bomb.png";
+            
             }
             throw new NotImplementedException();
         }

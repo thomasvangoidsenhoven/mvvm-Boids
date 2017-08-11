@@ -4,10 +4,13 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:View"
+        Closing="Close_Window"
+        Background="Black"
         mc:Ignorable="d"
         Title="BoidSpy" Height="300" Width="300">
    
         <StackPanel Grid.Column="0" >
+        <Label HorizontalAlignment="Center" FontSize="24"  Foreground="AliceBlue">Boid Position and Types</Label>
             <ItemsControl ItemsSource="{Binding WorldView.BoidViewModels}">
                 <ItemsControl.ItemsPanel>
                     <ItemsPanelTemplate>
@@ -16,7 +19,7 @@
                 </ItemsControl.ItemsPanel>
                 <ItemsControl.ItemTemplate>
                     <DataTemplate>
-                        <Border BorderBrush="Black" BorderThickness="1" CornerRadius="5" Padding="6" Margin="5">
+                        <Border BorderBrush="Black"  BorderThickness="1" CornerRadius="5" Padding="6" Margin="5">
                             <Grid>
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition />
@@ -28,14 +31,18 @@
                                     <RowDefinition Height="auto" />
                                     <RowDefinition />
                                 </Grid.RowDefinitions>
-                                <Label Grid.Column="0" Grid.Row="0" Content="{Binding Species}" />
-                                <TextBlock Grid.Column="0" Grid.Row="1" Text="Position x en y:" />
-                                <StackPanel Orientation="Horizontal" Grid.Column="1" Grid.Row="1">
-                                    <Label Content="{Binding Position.Value.X}" />
-                                    <Label Content="{Binding Position.Value.Y}" />
+                                <Label FontSize="18" Grid.RowSpan="2" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="AliceBlue" Grid.Column="0" Grid.Row="0" Content="{Binding Species}" />
+                                
+                                <StackPanel Orientation="Horizontal" Grid.Column="1" Grid.Row="0">
+                                <Label Foreground="AliceBlue">X: </Label>
+                                <Label Foreground="Aquamarine"  Content="{Binding Position.Value.X}" />
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal" Grid.Column="1" Grid.Row="1">
+                                <Label Foreground="AliceBlue">Y:</Label>
+                                <Label Foreground="Aquamarine" Content="{Binding Position.Value.Y}" />
 
-                                </StackPanel>
-                            </Grid>
+                            </StackPanel>
+                        </Grid>
                         </Border>
                     </DataTemplate>
                 </ItemsControl.ItemTemplate>

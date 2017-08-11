@@ -5,12 +5,13 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:View"
         mc:Ignorable="d"
+        Closing="Close_Window"
         Title="MainWindow" Height="1000" Width="1900"
         FontSize="24"
          >
     <Window.Resources>
         <local:SpeciesToColorConverter x:Key="speciesToColor"/>
-        <local:SpeciesToStarWarsConverter x:Key="speciesToStarWarsConverter"/>
+        <local:SpeciesToTerroristsConverter x:Key="speciesToTerroristsConverter"/>
     </Window.Resources >
     <Grid >
 
@@ -54,7 +55,7 @@
                 <ItemsControl.ItemTemplate>
                     <DataTemplate>
                         <!--<Ellipse Fill="{Binding Species, Converter={StaticResource speciesToColor} }"  Width="25" Height="25" />-->
-                        <Image Width="150" Height="150"  Source="{Binding Species, Converter={StaticResource speciesToStarWarsConverter}}"></Image>
+                        <Image Width="150" Height="150"  Source="{Binding Species, Converter={StaticResource speciesToTerroristsConverter}}"></Image>
                     </DataTemplate>
                 </ItemsControl.ItemTemplate>
             </ItemsControl>

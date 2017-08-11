@@ -24,7 +24,7 @@ namespace Model.Species
 
         public static RangedDoubleParameter PreyAttractionExponent = new RangedDoubleParameter("Prey Attraction Exponent", defaultValue: 1.5, minimum: 1, maximum: 10);
 
-        public static Parameter<string> EnemySpecies = new Parameter<string>("Repulsive Species", "hunter");
+        public static Parameter<string> EnemySpecies = new Parameter<string>("Repulsive Species", "bomb");
 
         public static Parameter<string> FriendSpecies = new Parameter<string>("Attractive Species", "prey");
 

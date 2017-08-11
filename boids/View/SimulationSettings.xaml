@@ -4,22 +4,40 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:View"
+        Closing="Close_Window"
+       Background="Black"
         mc:Ignorable="d"
-        Title="SimulationSettings" Height="300" Width="392.437">
+        Title="SimulationSettings" Height="300" Width="420">
     <Grid VerticalAlignment="Center">
+        
         <StackPanel>
-            <Label>Simuation Speed</Label>
-            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                <Button Margin="10 0 10 0" Width="70" Command="{Binding PauseSimulation}">Pause Game</Button>
-                <Button Margin="10 0 10 0" Width="70" Command="{Binding DefaultSpeed}">Default</Button>
-                <Button Margin="10 0 10 0" Width="70" Command="{Binding SlowSpeed}">Slow</Button>
-                <Button Margin="10 0 10 0" Width="70" Command="{Binding FastSpeed}">Fast</Button>
+            <Label FontSize="16" Foreground="AliceBlue" >Configure The World Dimensions</Label>
+            <StackPanel Margin="20 0 0 0 " Orientation="Horizontal">
+                <Label Foreground="AliceBlue">Height:</Label>
+                <Label  Foreground="AliceBlue" Content="{Binding WorldView.Height.Value}"> </Label>
+                <Slider VerticalAlignment="Center" Margin="20 0 0 0" Value="{Binding WorldView.Height.Value}" Minimum="500" Maximum="3000" IsSnapToTickEnabled="True" HorizontalAlignment="Left"  Width="250" SmallChange="1"/>
             </StackPanel>
+            <StackPanel Margin="20 0 0 0 " Orientation="Horizontal">
+                <Label Foreground="AliceBlue">Width:</Label>
+                <Label  Foreground="AliceBlue" Content="{Binding WorldView.Width.Value}"></Label>
+                <Slider VerticalAlignment="Center" Margin="20 0 0 0" Value="{Binding WorldView.Width.Value}" Minimum="500" Maximum="3000" IsSnapToTickEnabled="True" HorizontalAlignment="Left"  Width="250" SmallChange="1"/>
+            </StackPanel>
+            <Label FontSize="16" Foreground="AliceBlue" >Configure The Simuation Speed</Label>
+            <StackPanel  Margin="0 0 0 10" Orientation="Horizontal" HorizontalAlignment="Center">
+                <Button Background="DeepSkyBlue" Foreground="AliceBlue" Margin="10 0 10 0" Width="70" Command="{Binding PauseSimulation}">Pause</Button>
+                <Button  Background="DeepSkyBlue" Foreground="AliceBlue" Margin="10 0 10 0" Width="70" Command="{Binding DefaultSpeed}">Default</Button>
+                <Button  Background="DeepSkyBlue" Foreground="AliceBlue" Margin="10 0 10 0" Width="70" Command="{Binding SlowSpeed}">Slow</Button>
+                <Button  Background="DeepSkyBlue" Foreground="AliceBlue" Margin="10 0 10 0" Width="70" Command="{Binding FastSpeed}">Fast</Button>
+            </StackPanel >
 
-            <Label>Species Management</Label>
+            <Label FontSize="16" Foreground="AliceBlue">Species Management</Label>
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                <Button Margin="20 0 20 0" Width="80" Command="{Binding AddPrey}">Add Prey</Button>
-                <Button  Margin="20 0 20 0" Width="80" Command="{Binding AddHunter}">Add Hunter</Button>
+                <Button   Background="DeepSkyBlue" Foreground="AliceBlue" Margin="20 0 20 0" Width="80" Command="{Binding AddPrey}">Add Prey</Button>
+                <Button  Background="DeepSkyBlue" Foreground="AliceBlue"  Margin="20 0 20 0" Width="80" Command="{Binding AddHunter}">Add Hunter</Button>
+                <Button  Background="DeepSkyBlue" Foreground="AliceBlue"  Margin="20 0 20 0" Width="80" Command="{Binding AddBomb}">Add Bomb</Button>
+            </StackPanel>
+            <StackPanel  Margin="0 10 0 10">
+                <Button   Background="DeepSkyBlue" Foreground="AliceBlue" Margin="20 0 20 0" Width="80" Command="{Binding Reset}">Reset </Button>
             </StackPanel>
         </StackPanel>
     </Grid>

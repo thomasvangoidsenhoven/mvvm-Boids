@@ -5,6 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:View"
         mc:Ignorable="d"
+        Closing="Close_Window"
+        Background="Black"
         Title="BoidControls" Height="600" Width="900">
     <Grid>
      
@@ -12,10 +14,11 @@
         <Grid.ColumnDefinitions>
             <ColumnDefinition></ColumnDefinition>
             <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
         </Grid.ColumnDefinitions>
 
         <StackPanel Margin="10" Grid.Column="0">
-            <Label  Foreground="AliceBlue" Content="Hunters"></Label>
+            <Label HorizontalAlignment="Center" FontSize="20" Foreground="AliceBlue" Content="Hunters"></Label>
             <ItemsControl x:Name="Hunters"  ItemsSource="{Binding bindingsViewModel.RangeViewModel}">
                 <ItemsControl.ItemsPanel>
                     <ItemsPanelTemplate>
@@ -26,8 +29,8 @@
                     <DataTemplate>
                         <StackPanel Margin="20 2 0 2">
                             <StackPanel Orientation="Horizontal">
-                                <Label Foreground="Green" FontSize="18" Content="{Binding Name}"></Label>
-                                <Label Foreground="Green" FontSize="18" Content="{Binding Value.Value}"></Label>
+                                <Label Foreground="CadetBlue" FontSize="18" Content="{Binding Name}"></Label>
+                                <Label Foreground="CadetBlue" FontSize="18" Content="{Binding Value.Value}"></Label>
                             </StackPanel>
                             <Slider  Value="{Binding Value.Value}" Minimum="{Binding Minimum}" Maximum="{Binding Maximum}" IsSnapToTickEnabled="True" HorizontalAlignment="Left"  Width="300" SmallChange="1"/>
                         </StackPanel>
@@ -37,8 +40,8 @@
             </ItemsControl>
         </StackPanel>
 
-        <StackPanel Margin="10" Grid.Column="2">
-            <Label Foreground="AliceBlue"  Content="Preys" HorizontalAlignment="Right"></Label>
+        <StackPanel Margin="10" Grid.Column="1">
+            <Label Foreground="AliceBlue" FontSize="20"  Content="Preys" HorizontalAlignment="Center"></Label>
             <ItemsControl x:Name="Preys"  ItemsSource="{Binding bindingsViewModel.RangeViewModel}">
                 <ItemsControl.ItemsPanel>
                     <ItemsPanelTemplate>
@@ -49,8 +52,31 @@
                     <DataTemplate>
                         <StackPanel Margin="0 2 20 2">
                             <StackPanel Orientation="Horizontal">
-                                <Label Foreground="Green" FontSize="18" Content="{Binding Name}"></Label>
-                                <Label Foreground="Green" FontSize="18" Content="{Binding Value.Value}"></Label>
+                                <Label Foreground="CadetBlue" FontSize="18" Content="{Binding Name}"></Label>
+                                <Label Foreground="CadetBlue" FontSize="18" Content="{Binding Value.Value}"></Label>
+                            </StackPanel>
+                            <Slider  Value="{Binding Value.Value}" Minimum="{Binding Minimum}" Maximum="{Binding Maximum}" HorizontalAlignment="Left" IsSnapToTickEnabled="True"  Width="300" SmallChange="1"/>
+                        </StackPanel>
+
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+        </StackPanel>
+
+        <StackPanel Margin="10" Grid.Column="2">
+            <Label Foreground="AliceBlue" FontSize="20" HorizontalAlignment="Center"  Content="Bomb"></Label>
+            <ItemsControl x:Name="Bomb"  ItemsSource="{Binding bindingsViewModel.RangeViewModel}">
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <StackPanel />
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Margin="0 2 20 2">
+                            <StackPanel Orientation="Horizontal">
+                                <Label Foreground="CadetBlue" FontSize="18" Content="{Binding Name}"></Label>
+                                <Label Foreground="CadetBlue" FontSize="18" Content="{Binding Value.Value}"></Label>
                             </StackPanel>
                             <Slider  Value="{Binding Value.Value}" Minimum="{Binding Minimum}" Maximum="{Binding Maximum}" HorizontalAlignment="Left" IsSnapToTickEnabled="True"  Width="300" SmallChange="1"/>
                         </StackPanel>

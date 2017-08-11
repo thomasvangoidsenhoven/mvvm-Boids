@@ -11,9 +11,10 @@ namespace Model
 {
     public class World
     {
-        public static readonly RangedDoubleParameter Width = new RangedDoubleParameter("Width", 1500, 100, 10000);
+        //removed readonly to change the values
+        public static  RangedDoubleParameter Width = new RangedDoubleParameter("Width", 1500, 100, 10000);
 
-        public static readonly RangedDoubleParameter Height = new RangedDoubleParameter("Height", 1000, 100, 10000);
+        public static  RangedDoubleParameter Height = new RangedDoubleParameter("Height", 1000, 100, 10000);
 
         public World()
         {

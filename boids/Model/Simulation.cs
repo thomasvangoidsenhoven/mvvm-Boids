@@ -33,6 +33,7 @@ namespace Model
         {
             yield return new HunterSpecies(World);
             yield return new PreySpecies(World);
+            yield return new BombSpecies(World);
         }
     }
 }
