@@ -38,30 +38,35 @@ namespace ViewModel
         public SimulationViewModel(Simulation simulation)
         {
             _simulation = simulation;
-            _simulation.Species[0].CreateBoid(new Vector2D(50, 50));
-            _simulation.Species[1].CreateBoid(new Vector2D(250, 250));
-            _simulation.Species[2].CreateBoid(new Vector2D(600, 600));
 
             WorldView = new WorldViewModel(_simulation.World);
             timeService = ServiceLocator.Current.GetInstance<ITimeService>();
             timeService.Advance += AdvanceTimer;
-            timeService.Start(new TimeSpan(0,0,0,0,15));
+            timeService.Initiate(new TimeSpan(0,0,0,0,15));
 
 
-            AddPrey = EnabledCommand.FromDelegate(() => _simulation.Species[1].CreateBoid(new Vector2D(50, 50)));
-            AddHunter = EnabledCommand.FromDelegate(() => _simulation.Species[0].CreateBoid(new Vector2D(300, 50)));
+            AddPrey = EnabledCommand.FromDelegate(() => CreateBoid(1,50,50));
+            AddHunter = EnabledCommand.FromDelegate(() => CreateBoid(0,300,50));
             PauseSimulation = EnabledCommand.FromDelegate(() => Pause_Simulation());
-            DefaultSpeed = EnabledCommand.FromDelegate(() => RestartAndAdvanceTimer(20));
+            DefaultSpeed = EnabledCommand.FromDelegate(() => RestartAndAdvanceTimer(15));
             SlowSpeed = EnabledCommand.FromDelegate(() => RestartAndAdvanceTimer(40));
-            FastSpeed = EnabledCommand.FromDelegate(() => RestartAndAdvanceTimer(5));
+            FastSpeed = EnabledCommand.FromDelegate(() => RestartAndAdvanceTimer(3));
             Reset = EnabledCommand.FromDelegate(() => Reset_Simulation());
-            AddBomb = EnabledCommand.FromDelegate(() => _simulation.Species[2].CreateBoid(new Vector2D(650, 650)));
+            AddBomb = EnabledCommand.FromDelegate(() => CreateBoid(2, 650, 650));
         }
 
 
+        //clears the boids currently on the field
         private void Reset_Simulation()
         {
             _simulation.World.Population.Clear();
+        }
+
+
+        //creates a boid given a position
+        private void CreateBoid(int boidSpecieIndex, int x, int y)
+        {
+            _simulation.Species[boidSpecieIndex].CreateBoid(new Vector2D(x, y));
         }
 
         public void Update(double time)
@@ -76,7 +81,7 @@ namespace ViewModel
 
         private void RestartAndAdvanceTimer(int interval)
         {
-            timeService.Start(new TimeSpan(0, 0, 0, 0, interval));
+            timeService.Initiate(new TimeSpan(0, 0, 0, 0, interval));
         }
 
         private void Pause_Simulation()

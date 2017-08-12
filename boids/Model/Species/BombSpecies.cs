@@ -16,6 +16,7 @@ namespace Model.Species
 
         public static RangedDoubleParameter PreyAttractionExponent = new RangedDoubleParameter("Prey Attraction Exponent", defaultValue: 1.5, minimum: 1, maximum: 10);
 
+        //the specie it is attracted to (tries to follow)
         public static Parameter<string> FriendSpecies = new Parameter<string>("Attractive Species", "hunter");
 
         public BombSpecies(World world) : base(world, "bomb")

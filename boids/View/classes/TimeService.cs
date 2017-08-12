@@ -18,7 +18,7 @@ namespace View.classes
             timer.Tick += AdvanceTimer;
         }
 
-        public void Start(TimeSpan interval)
+        public void Initiate(TimeSpan interval)
         {
             if (!timer.IsEnabled) timer.Start();
             timer.Interval = interval;

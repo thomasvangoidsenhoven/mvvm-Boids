@@ -9,7 +9,7 @@ namespace Model
     public interface ITimeService
     {
 
-        void Start(TimeSpan interval);
+        void Initiate(TimeSpan interval);
         void Pause();
 
         event Action<ITimeService> Advance;
