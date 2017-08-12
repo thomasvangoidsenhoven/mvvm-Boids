@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 
 namespace ViewModel
 {
+    //gets a boid species name + its current position
     public class BoidViewModel
     {
         private Boid _boid;

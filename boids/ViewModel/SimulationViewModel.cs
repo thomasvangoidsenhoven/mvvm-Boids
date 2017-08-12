@@ -25,7 +25,10 @@ namespace ViewModel
             get { return _WorldView; }
         }
 
+        //=> Operator creates a getter and that retuns the value;
         public IList<SpeciesViewModel> Species => _simulation.Species.Select(s => new SpeciesViewModel(s)).ToList();
+
+        //Icommand om de command van de button 2 methodes: CanExecute + Execute
         public ICommand AddPrey { get; }
         public ICommand AddHunter { get; }
         public ICommand DefaultSpeed { get; }
@@ -40,11 +43,15 @@ namespace ViewModel
             _simulation = simulation;
 
             WorldView = new WorldViewModel(_simulation.World);
+            //ServiceLocator: Unity Framework // dependency Injection, gets the ITimeService object from it
             timeService = ServiceLocator.Current.GetInstance<ITimeService>();
+
+            //every time event is triggered use the private method AdvanceTimer
             timeService.Advance += AdvanceTimer;
             timeService.Initiate(new TimeSpan(0,0,0,0,15));
 
-
+            //creates the button and binds it with the private methods inside this viewmodel class; The FromDelegate creates and returns an Action object with the corresponding private method bound to it.
+            //sidenode: Action Interface => delegates a method without returning something <=> Func Encapsulates a method that has one parameter and returns a value of the type specified by the TResult parameter.
             AddPrey = EnabledCommand.FromDelegate(() => CreateBoid(1,50,50));
             AddHunter = EnabledCommand.FromDelegate(() => CreateBoid(0,300,50));
             PauseSimulation = EnabledCommand.FromDelegate(() => Pause_Simulation());

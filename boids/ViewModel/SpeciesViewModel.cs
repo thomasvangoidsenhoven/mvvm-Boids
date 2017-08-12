@@ -24,12 +24,7 @@ namespace ViewModel
             this.specie = specie;
         }
 
-        public void populate(double x, double y)
-        {
-            
-            specie.CreateBoid(new Vector2D(x, y));
-        }
-
+       
         public BindingsViewModel bindingsViewModel => new BindingsViewModel(specie.Bindings);
     }
 
